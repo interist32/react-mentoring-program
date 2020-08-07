@@ -1,0 +1,27 @@
+@import '../../palette';
+
+
+.filter-options {
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+}
+
+.sorting {
+    &__title {
+        font-size: .8rem;
+        font-weight: 600;
+        color: $color-grey-light;
+    }
+
+    &__select {
+        margin-left: 1em;
+        font-size: .8rem;
+        border: none;
+        padding: .25em;
+        background-color: $color-grey-dark;
+        color: $color-white;
+        font-family: inherit;
+        font-weight: 600;
+    }
+}

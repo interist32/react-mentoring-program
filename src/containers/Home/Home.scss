@@ -1,0 +1,26 @@
+@import '../../palette';
+
+
+.hero {
+    background-image: url('./movies-gallery.png');
+
+    &__title {
+        font-size: 2.5rem;
+        color: $color-white;
+        font-weight: 300;
+        margin: 3rem;
+    }
+}
+
+.search {
+    margin: 3rem 3rem 8rem;
+}
+
+.result {
+    margin-top: 1rem;
+    background: $color-grey-dark;
+
+    &__title {
+        margin-top: 1.5rem;
+    }
+}

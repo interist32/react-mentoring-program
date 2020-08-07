@@ -15,3 +15,7 @@
     - Using of ENV variables (cross-env)
     - Babel configuration for parsing JSX syntax
     - Configuration splitting for DEV/PROD environments
+- Task 3:
+  - Create UI for Home Page
+  - Use PropTypes
+  - Use ErrorBoundary component

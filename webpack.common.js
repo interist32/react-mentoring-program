@@ -13,11 +13,32 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
   },
   module: {
-    rules: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-    }]
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.(png)$/,
+        exclude: /node_modules/,
+        use: [
+          'file-loader',
+        ],
+      },
+      {
+        test: /\.(css|scss)$/,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+    ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
   plugins: [
     new CleanWebpackPlugin(),

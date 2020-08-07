@@ -1,0 +1,11 @@
+@import '../../palette.scss';
+
+
+.logo {
+    color: $color-red;
+    font-size: 1.25em;
+
+    &__bold {
+        font-weight: 600;
+    }
+}
