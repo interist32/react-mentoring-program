@@ -2,6 +2,18 @@
 
 <img src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png" width="100px"/>
 
+## How to run
+To play around this project clone the repository and then run:
+```
+npm install
+
+# to run in development mode
+npm start
+
+# to run in production mode
+npm run serve:prod
+```
+
 ## Task list
 - [Task 1](https://codesandbox.io/s/vigilant-gareth-8hn8v?file=/src/App.js):
   - Use `create-react-app`
@@ -19,3 +31,4 @@
   - Create UI for Home Page
   - Use PropTypes
   - Use ErrorBoundary component
+  - Use Layout components
