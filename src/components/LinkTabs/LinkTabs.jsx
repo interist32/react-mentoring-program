@@ -14,7 +14,7 @@ export default class LinkTabs extends React.Component {
 
     render() {
         return (
-            <ul className="link-tabs">
+            <ul className="c-link-tabs">
                 {
                     this.links.map(({ text, link }) => (
                         <LinkTab key={text} text={text} link={link} />
@@ -34,8 +34,8 @@ LinkTabs.propTypes = {
 
 
 const LinkTab = ({ text, link }) => (
-    <li className="link-tabs__item">
-        <a className="link-tabs__link" href={link}>{text}</a>
+    <li className="c-link-tabs__item">
+        <a className="c-link-tabs__link" href={link}>{text}</a>
     </li>
 );
 

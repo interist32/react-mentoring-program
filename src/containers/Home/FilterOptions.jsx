@@ -16,13 +16,13 @@ const links = [
 
 const FilterOptions = () => {
     return (
-        <div className="filter-options">
+        <div className="home-filter-options">
             <LinkTabs links={links} />
 
-            <div className="sorting">
-                <label className="sorting__title">
+            <div className="home-sorting">
+                <label className="home-sorting__title">
                     SORT BY
-                        <select className="sorting__select">
+                        <select className="home-sorting__select">
                         <option value="date">RELEASE DATE</option>
                     </select>
                 </label>

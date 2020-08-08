@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 const ButtonLink = ({ className, ...props }) => (
     <a {...props}
         {...classNames(
-            'button-link',
+            'c-btn-link',
             className,
         )}>
         {props.children}

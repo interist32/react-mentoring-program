@@ -6,7 +6,7 @@ import './Header.scss';
 
 
 const Header = (props) => (
-    <header className="header">
+    <header className="c-header">
         <Logo />
         {props.children}
     </header>

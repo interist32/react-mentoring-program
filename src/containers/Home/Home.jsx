@@ -1,12 +1,13 @@
 import React from 'react';
-import Logo from '../../components/Logo/Logo';
-import Header from '../../components/Header/Header';
+
+import HeroLayout from '../../layouts/HeroLayout';
+
 import ButtonLink from '../../components/ButtonLink/ButtonLink';
 
 import SearchForm from './SearchForm';
 import FilterOptions from './FilterOptions';
-import MovieList from './MovieList';
-import Footer from './Footer';
+import MovieList from '../../components/MovieList/MovieList';
+
 
 import './Home.scss';
 
@@ -46,34 +47,40 @@ const movies = [
 
 
 const Home = () => {
-    return (
-        <div className="home">
-            <div className="hero">
-                <div className="cm-container">
-                    <Header>
-                        <ButtonLink href='#'>+ ADD MOVIE</ButtonLink>
-                    </Header>
+    const headerRight = (
+        <ButtonLink href='#'>+ ADD MOVIE</ButtonLink>
+    );
 
-                    <h1 className="hero__title">FIND YOUR MOVIE</h1>
+    const hero = (
+        <>
+            <h1 className="home__title">FIND YOUR MOVIE</h1>
 
-                    <section className="search">
-                        <SearchForm />
-                    </section>
-                </div>
+            <section className="home__search">
+                <SearchForm />
+            </section>
+        </>
+    );
+
+    const main = (
+        <>
+            <FilterOptions />
+
+            <div className="home-result__title">
+                <strong>{movies.length}</strong> movies found
             </div>
 
-            <main className="result cm-container">
-                <FilterOptions />
+            <MovieList movies={movies} />
+        </>
+    );
 
-                <div className="result__title">
-                    <strong>{movies.length}</strong> movies found
-                </div>
-
-                <MovieList movies={movies} />
-            </main>
-
-            <Footer />
-        </div>)
+    return (
+        <HeroLayout
+            headerRight={headerRight}
+            hero={hero}
+            main={main}
+        >
+        </HeroLayout>
+    )
 };
 
 export default Home;

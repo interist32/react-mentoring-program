@@ -7,13 +7,13 @@ import './SearchForm.scss';
 
 const SearchForm = () => {
     return (
-        <form className="search-form">
+        <form className="home-search-form">
             <input type="text"
-                className="search-form__input"
+                className="home-search-form__input"
                 placeholder="What do you want to watch?"></input>
             <Button type="submit"
                 colorType="primary"
-                className="search-form__button">SEARCH</Button>
+                className="home-search-form__button">SEARCH</Button>
         </form>
     );
 };

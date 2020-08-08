@@ -1,13 +1,13 @@
 @import '../../palette';
 
 
-.filter-options {
+.home-filter-options {
     display: flex;
     justify-content: space-between;
     align-content: flex-start;
 }
 
-.sorting {
+.home-sorting {
     &__title {
         font-size: .8rem;
         font-weight: 600;

@@ -1,7 +1,7 @@
 @import '../../palette';
 
 
-.card {
+.c-movie-card {
     display: inline-block;
     max-width: 320px;
 
@@ -17,7 +17,7 @@
     }
 }
 
-.movie {
+.c-movie-card-details {
     display: flex;
     align-items: center;
     margin-top: 1rem;

@@ -1,16 +1,16 @@
 import React from 'react';
 
-import './Button.scss';
-
 import { classNames } from '../../utils/utils';
+
+import './Button.scss';
 
 import PropTypes from 'prop-types';
 
 
 const COLOR_TYPE_CLASS = {
     normal: '',
-    primary: 'btn--primary',
-    secondary: 'btn--secondary',
+    primary: 'c-btn--primary',
+    secondary: 'c-btn--secondary',
 };
 
 
@@ -18,7 +18,7 @@ const Button = ({ className, colorType, ...props }) => {
     return (
         <button
             {...classNames(
-                'btn',
+                'c-btn',
                 COLOR_TYPE_CLASS[colorType],
                 className,
             )}>

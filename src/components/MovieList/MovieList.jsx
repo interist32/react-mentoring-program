@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../../components/Card/Card';
+import Card from '../MovieCard/MovieCard';
 
 import './MovieList.scss';
 
@@ -7,16 +7,24 @@ import PropTypes from 'prop-types';
 
 
 const MovieList = ({ movies }) => {
-    const cardsList = movies.map((props) => (
+    const movieItems = movies.map((props) => (
         <li key={props.title}
-            className="movie-list__item">
+            className="c-movie-list__item">
             <Card {...props} />
         </li>
     ));
+
+    const movieList = (
+        <ul className="c-movie-list">
+            {movieItems}
+        </ul>);
+
+    const noMovies = (
+        <div className="c-movie-list__empty">No Movie Found</div>
+    );
+
     return (
-        <ul className="movie-list">
-            {cardsList}
-        </ul>
+        movies.length ? movieList : noMovies
     )
 };
 
