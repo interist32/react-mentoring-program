@@ -1,0 +1,25 @@
+@import '../../palette';
+
+
+.c-btn-link {
+    $bgColor: rgba($color-grey-light, .5);
+    color: $color-red;
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 1.25rem;
+    font-weight: 400;
+    padding: .5em .75em;
+    border-radius: .125em;
+    background: $bgColor;
+    text-decoration: none;
+    position: relative;
+    transition: background-color .1s ease-in-out;
+
+    &:hover {
+        background: lighten($bgColor, 5%);
+    }
+
+    &:active {
+        background: darken($bgColor, 10%);
+    }
+}

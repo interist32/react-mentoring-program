@@ -1,0 +1,26 @@
+@import '../../palette';
+
+
+.c-link-tabs {
+    margin: 0;
+    padding: 0;
+
+    &__item {
+        font-size: .8rem;
+        font-weight: 600;
+        display: inline-block;
+        list-style: none;
+        text-transform: uppercase;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: $color-white;
+        padding-bottom: 1em;
+        margin-right: 1em;
+
+        &:hover {
+            border-bottom: .2em solid $color-red;
+        }
+    }
+}

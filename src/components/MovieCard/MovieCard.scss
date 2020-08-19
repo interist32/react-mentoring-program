@@ -1,0 +1,38 @@
+@import '../../palette';
+
+
+.c-movie-card {
+    display: inline-block;
+    max-width: 320px;
+
+    &__image {
+        width: 320px;
+        height: 450px;
+        object-fit: cover;
+    }
+
+    &__genre {
+        font-size: .8rem;
+        margin-top: .5rem;
+    }
+}
+
+.c-movie-card-details {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+
+    &__title {
+        font-size: 1.2rem;
+        overflow-wrap: break-word;
+        flex: 1;
+    }
+
+    &__release {
+        font-size: .8rem;
+        padding: .5em 1.5em;
+        border: 0.0625em solid $color-grey-light;
+        border-radius: .25em;
+        align-self: flex-start;
+    }
+}

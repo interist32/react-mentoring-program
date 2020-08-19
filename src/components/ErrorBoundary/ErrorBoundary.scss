@@ -1,0 +1,17 @@
+.global-error {
+    display: inline-block;
+    padding: 1em;
+
+    &__title {
+        font-size: 2rem;
+    }
+
+    &__error {
+        font-size: 1.5rem;
+    }
+
+    &__details {
+        white-space: pre-wrap;
+        cursor: pointer;
+    }
+}

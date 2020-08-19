@@ -1,0 +1,21 @@
+@import '../../palette';
+
+
+.home {
+    &__title {
+        font-size: 2.5rem;
+        color: $color-white;
+        font-weight: 300;
+        margin: 3rem;
+    }
+
+    &__search {
+        margin: 3rem 3rem 8rem;
+    }
+}
+
+.home-result {
+    &__title {
+        margin-top: 1.5rem;
+    }
+}

@@ -1,0 +1,13 @@
+@import '../palette';
+
+
+.l-hero {
+    &__hero {
+        background-image: url('../assets/images/movies-gallery.png');
+    }
+
+    &__content {
+        margin-top: 1rem;
+        background: $color-grey-dark;
+    }
+}

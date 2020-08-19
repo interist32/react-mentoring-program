@@ -1,0 +1,36 @@
+@import '../../palette';
+
+
+@mixin states($color) {
+    &:hover {
+        background: lighten($color, 5%);
+    }
+
+    &:active {
+        background: darken($color, 10%);
+    }
+}
+
+.c-btn {
+    font-size: 1.25rem;
+    font-weight: 400;
+    padding: .75em 3em;
+    border-radius: .125em;
+    outline: none;
+    border: none;
+    transition: background-color .1s ease-in-out;
+
+    &--primary {
+        color: $color-white;
+        background: $color-red;
+
+        @include states($color-red);
+    }
+
+    &--secondary {
+        color: $color-red;
+        background: $color-grey;
+
+        @include states($color-grey);
+    }
+}

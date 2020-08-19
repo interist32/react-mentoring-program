@@ -1,0 +1,31 @@
+@import './palette';
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: $color-white;
+}
+
+body {
+    background-color: $color-grey;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    outline: none;
+}
+
+input,
+button {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
