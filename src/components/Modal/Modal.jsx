@@ -1,0 +1,21 @@
+import React from 'react';
+
+import Overlay from '../Overlay/Overlay';
+
+import './Modal.scss';
+
+
+const Modal = ({ onCloseClick, ...props }) => (
+    <Overlay>
+        <div className="c-modal">
+            <div className="c-modal-content">
+                <div onClick={onCloseClick} className="c-modal-content__close">✖</div>
+                <div className="c-modal-content__body">
+                    {props.children}
+                </div>
+            </div>
+        </div>
+    </Overlay>
+);
+
+export default Modal;

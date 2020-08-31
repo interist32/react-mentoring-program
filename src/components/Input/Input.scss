@@ -1,0 +1,19 @@
+@import '../../palette';
+
+
+.c-input {
+    font-size: 1.25rem;
+    border-radius: .25em;
+    padding: .75em;
+    width: 100%;
+    border: none;
+    background: $color-grey-darker;
+    color: $color-white;
+    font-weight: 400;
+    transition: box-shadow .1s ease-in-out;
+    box-sizing: border-box;
+    
+    &:focus {
+        box-shadow: inset 0 0 .5em 0 $color-grey-light;
+    }
+}

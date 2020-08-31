@@ -1,0 +1,17 @@
+@import '../../palette';
+
+
+.home-delete-movie {
+    width: 480px;
+    
+    &__title {
+        margin-bottom: 2rem;
+    }
+}
+
+.home-delete-movie-form {
+    &__actions {
+        margin-top: 3em;
+        text-align: right;
+    }
+}

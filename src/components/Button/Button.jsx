@@ -14,9 +14,10 @@ const COLOR_TYPE_CLASS = {
 };
 
 
-const Button = ({ className, colorType, ...props }) => {
+const Button = ({ type, className, colorType, onClick, ...props }) => {
     return (
-        <button
+        <button onClick={onClick}
+            type={type}
             {...classNames(
                 'c-btn',
                 COLOR_TYPE_CLASS[colorType],
