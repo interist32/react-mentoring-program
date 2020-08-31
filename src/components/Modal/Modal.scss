@@ -1,0 +1,25 @@
+@import '../../palette';
+
+
+.c-modal {
+    display: flex;
+    justify-content: center;
+
+    &-content {
+        position: relative;
+        min-width: 320px;
+        display: inline-block;
+        background: $color-grey-dark;
+        margin-top: 1em;
+        padding: 3em;
+
+        &__close {
+            position: absolute;
+            line-height: 1;
+            font-size: 2rem;
+            right: .5em;
+            top: .5em;
+            cursor: pointer;
+        }
+    }
+}

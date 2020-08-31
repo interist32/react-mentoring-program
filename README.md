@@ -32,3 +32,8 @@ npm run serve:prod
   - Use PropTypes
   - Use ErrorBoundary component
   - Use Layout components
+- Task 4:
+  - Create UI for Modal dialogs
+  - Use stateless/stateful approach
+  - Use React syntethic events
+  - Use lifecycle methods
