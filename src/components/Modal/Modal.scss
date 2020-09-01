@@ -4,13 +4,18 @@
 .c-modal {
     display: flex;
     justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
 
     &-content {
         position: relative;
         min-width: 320px;
         display: inline-block;
         background: $color-grey-dark;
-        margin-top: 1em;
+        margin-top: 2em;
         padding: 3em;
 
         &__close {

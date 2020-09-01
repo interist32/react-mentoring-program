@@ -6,7 +6,8 @@ import './Modal.scss';
 
 
 const Modal = ({ onCloseClick, ...props }) => (
-    <Overlay>
+    <>
+        <Overlay />
         <div className="c-modal">
             <div className="c-modal-content">
                 <div onClick={onCloseClick} className="c-modal-content__close">✖</div>
@@ -15,7 +16,7 @@ const Modal = ({ onCloseClick, ...props }) => (
                 </div>
             </div>
         </div>
-    </Overlay>
+    </>
 );
 
 export default Modal;
