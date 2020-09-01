@@ -12,17 +12,24 @@
 }
 
 .c-btn {
+    $bgColor: rgba($color-grey-light, .5);
     font-size: 1.25rem;
     font-weight: 400;
     padding: .75em 3em;
-    border-radius: .125em;
     outline: none;
-    border: none;
+    background: $bgColor;
+    border-radius: .125em;
+    border-width: .125em;
+    border-style: solid;
     transition: background-color .1s ease-in-out;
+    border-color: $bgColor;
+    color: $color-red;
+    @include states($bgColor);
 
     &--primary {
         color: $color-white;
         background: $color-red;
+        border-color: $color-red;
 
         @include states($color-red);
     }
@@ -30,6 +37,7 @@
     &--secondary {
         color: $color-red;
         background: $color-grey;
+        border-color: $color-red;
 
         @include states($color-grey);
     }
