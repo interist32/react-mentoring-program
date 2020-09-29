@@ -10,6 +10,7 @@ import MovieList from '../../components/MovieList/MovieList';
 import AddMovieModal from './AddMovieModal';
 import EditMovieModal from './EditMovieModal';
 import DeleteMovieModal from './DeleteMovieModal';
+import MovieDetails from './MovieDetails';
 
 import useModalState from '../../hooks/useModalState';
 import { getMoviesData } from '../../data/api';
@@ -23,6 +24,13 @@ const Home = () => {
     const [deleteMovieModalOpen, showDeleteMovideModal, closeDeleteMovideModal] = useModalState();
     const [movies, setMovies] = useState([]);
     const [genres, setGenres] = useState([]);
+    const [selectedMovieId, setSelectedMovieId] = useState(null);
+
+    const getSelectedMovie = useCallback(() => {
+        return movies.find(movie => movie.id === selectedMovieId);
+    }, [movies, selectedMovieId]);
+
+    const selectedMovie = getSelectedMovie();
 
     useEffect(() => {
         getMoviesData().then(({ movies, genres }) => {
@@ -63,6 +71,8 @@ const Home = () => {
         </>
     );
 
+
+
     const main = (
         <>
             <FilterOptions genres={genres} />
@@ -71,7 +81,7 @@ const Home = () => {
                 <strong>{movies.length}</strong> movies found
             </div>
 
-            <MovieList movies={movies} />
+            <MovieList movies={movies} onMovieClick={setSelectedMovieId} />
 
             {addMovieModal}
             {editMovieModal}
@@ -82,7 +92,7 @@ const Home = () => {
     return (
         <HeroLayout
             headerRight={headerRight}
-            hero={hero}
+            hero={selectedMovie ? <MovieDetails movie={selectedMovie} /> : hero}
             main={main}
         >
         </HeroLayout>
