@@ -8,9 +8,9 @@ import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 
 
-const EditMovieModal = () => {
+const EditMovieModal = ({ onCloseClick }) => {
     return (
-        <Modal onCloseClick={this.props.onCloseClick}>
+        <Modal onCloseClick={onCloseClick}>
             <div className="home-edit-movie">
                 <h1 className="tp-header home-edit-movie__title">EDIT MOVIE</h1>
                 <form className="home-edit-movie-form">

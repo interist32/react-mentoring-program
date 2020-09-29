@@ -48,30 +48,35 @@ const movies = [
 ];
 
 
+function useModalState(initialState = false) {
+    const [isOpen, setIsOpen] = useState(initialState);
+    return [isOpen, () => setIsOpen(true), () => setIsOpen(false)];
+}
+
 const Home = () => {
-    const [addMovieModalOpen, showAddMovieModal] = useState(false);
-    const [editMovieModalOpen, showEditMovieModal] = useState(false);
-    const [deleteMovieModalOpen, showDeleteMovieModal] = useState(false);
+    const [addMovieModalOpen, showAddMovideModal, closeAddMovideModal] = useModalState();
+    const [editMovieModalOpen, showEditMovideModal, closeEditMovideModal] = useModalState();
+    const [deleteMovieModalOpen, showDeleteMovideModal, closeDeleteMovideModal] = useModalState();
 
     const headerRight = (
-        <Button onClick={() => showAddMovieModal(true)}>+ ADD MOVIE</Button>
+        <Button onClick={() => showAddMovideModal()}>+ ADD MOVIE</Button>
     );
 
     const addMovieModal = (
         addMovieModalOpen ?
-            <AddMovieModal onCloseClick={() => showAddMovieModal(false)} /> :
+            <AddMovieModal onCloseClick={() => closeAddMovideModal()} /> :
             null
     );
 
     const editMovieModal = (
         editMovieModalOpen ?
-            <EditMovieModal onCloseClick={() => showEditMovieModal(false)} /> :
+            <EditMovieModal onCloseClick={() => closeEditMovideModal()} /> :
             null
     );
 
     const deleteMovieModal = (
         deleteMovieModalOpen ?
-            <DeleteMovieModal onCloseClick={() => showDeleteMovieModal(false)} /> :
+            <DeleteMovieModal onCloseClick={() => closeDeleteMovideModal()} /> :
             null
     );
 

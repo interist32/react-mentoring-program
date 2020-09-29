@@ -10,7 +10,7 @@ import Button from '../../components/Button/Button';
 
 const DeleteMovieModal = ({ onCloseClick }) => {
     return (
-        <Modal onCloseClick={this.props.onCloseClick}>
+        <Modal onCloseClick={onCloseClick}>
             <div className="home-delete-movie">
                 <h1 className="tp-header home-delete-movie__title">DELETE MOVIE</h1>
                 <form className="home-delete-movie-form">
