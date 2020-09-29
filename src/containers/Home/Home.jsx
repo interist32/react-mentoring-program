@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import HeroLayout from '../../layouts/HeroLayout';
 
@@ -48,103 +48,68 @@ const movies = [
 ];
 
 
-const HOME_MODAL = {
-    ADD_MOVIE: 'addMovieModal',
-    EDIT_MOVIE: 'editMovieModal',
-    DELETE_MOVIE: 'deleteMovieModal',
-};
+const Home = () => {
+    const [addMovieModalOpen, showAddMovieModal] = useState(false);
+    const [editMovieModalOpen, showEditMovieModal] = useState(false);
+    const [deleteMovieModalOpen, showDeleteMovieModal] = useState(false);
 
+    const headerRight = (
+        <Button onClick={() => showAddMovieModal(true)}>+ ADD MOVIE</Button>
+    );
 
-export default class Home extends React.Component {
-    constructor(props) {
-        super(props);
+    const addMovieModal = (
+        addMovieModalOpen ?
+            <AddMovieModal onCloseClick={() => showAddMovieModal(false)} /> :
+            null
+    );
 
-        this.state = {
-            [HOME_MODAL.ADD_MOVIE]: false,
-            [HOME_MODAL.EDIT_MOVIE]: false,
-            [HOME_MODAL.DELETE_MOVIE]: false,
-        };
+    const editMovieModal = (
+        editMovieModalOpen ?
+            <EditMovieModal onCloseClick={() => showEditMovieModal(false)} /> :
+            null
+    );
 
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-    }
+    const deleteMovieModal = (
+        deleteMovieModalOpen ?
+            <DeleteMovieModal onCloseClick={() => showDeleteMovieModal(false)} /> :
+            null
+    );
 
-    openModal(modalType) {
-        this.setState({
-            [modalType]: true,
-        });
-    }
+    const hero = (
+        <>
+            <h1 className="tp-header home__title">FIND YOUR MOVIE</h1>
 
-    closeModal(modalType) {
-        this.setState({
-            [modalType]: false,
-        });
-    }
+            <section className="home__search">
+                <SearchForm />
+            </section>
+        </>
+    );
 
-    componentDidMount() {
-        console.log('Component did mount!');
-    }
+    const main = (
+        <>
+            <FilterOptions />
 
-    render() {
-        const headerRight = (
-            <Button onClick={this.openModal.bind(this, HOME_MODAL.ADD_MOVIE)}>+ ADD MOVIE</Button>
-        );
+            <div className="home-result__title">
+                <strong>{movies.length}</strong> movies found
+            </div>
 
-        const addMovieModalOpen = this.state[HOME_MODAL.ADD_MOVIE];
-        const editMovieModalOpen = this.state[HOME_MODAL.EDIT_MOVIE];
-        const deleteMovieModalOpen = this.state[HOME_MODAL.DELETE_MOVIE];
+            <MovieList movies={movies} />
 
-        const addMovieModal = (
-            addMovieModalOpen ?
-                <AddMovieModal onCloseClick={this.closeModal.bind(this, HOME_MODAL.ADD_MOVIE)} /> :
-                null
-        );
+            {addMovieModal}
+            {editMovieModal}
+            {deleteMovieModal}
+        </>
+    );
 
-        const editMovieModal = (
-            editMovieModalOpen ?
-                <EditMovieModal onCloseClick={this.closeModal.bind(this, HOME_MODAL.EDIT_MOVIE)} /> :
-                null
-        );
+    return (
+        <HeroLayout
+            headerRight={headerRight}
+            hero={hero}
+            main={main}
+        >
+        </HeroLayout>
+    );
 
-        const deleteMovieModal = (
-            deleteMovieModalOpen ?
-                <DeleteMovieModal onCloseClick={this.closeModal.bind(this, HOME_MODAL.DELETE_MOVIE)} /> :
-                null
-        );
-
-        const hero = (
-            <>
-                <h1 className="tp-header home__title">FIND YOUR MOVIE</h1>
-
-                <section className="home__search">
-                    <SearchForm />
-                </section>
-            </>
-        );
-
-        const main = (
-            <>
-                <FilterOptions />
-
-                <div className="home-result__title">
-                    <strong>{movies.length}</strong> movies found
-                </div>
-
-                <MovieList movies={movies} />
-
-                {addMovieModal}
-                {editMovieModal}
-                {deleteMovieModal}
-            </>
-        );
-
-        return (
-            <HeroLayout
-                headerRight={headerRight}
-                hero={hero}
-                main={main}
-            >
-            </HeroLayout>
-        );
-    }
 }
+
+export default Home;
