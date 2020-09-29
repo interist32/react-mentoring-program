@@ -37,3 +37,9 @@ npm run serve:prod
   - Use stateless/stateful approach
   - Use React syntethic events
   - Use lifecycle methods
+- Task 5:
+  - Create UI for Movie Details
+  - Use `useState` hook
+  - Use `useCallback` hook
+  - Use `useEffect` hook
+  - Use custom hook

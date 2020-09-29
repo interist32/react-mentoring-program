@@ -5,16 +5,12 @@ import LinkTabs from '../../components/LinkTabs/LinkTabs';
 import './FilterOptions.scss';
 
 
-const links = [
-    { text: 'All', link: '#all' },
-    { text: 'Documentary', link: '#documentary' },
-    { text: 'Comedy', link: '#comedy' },
-    { text: 'Horror', link: '#horror' },
-    { text: 'Crime', link: '#crime' },
-];
+const FilterOptions = ({ genres }) => {
+    const links = genres.map(genre => ({
+        text: genre,
+        link: `#${genre.toLowerCase()}`,
+    }));
 
-
-const FilterOptions = () => {
     return (
         <div className="home-filter-options">
             <LinkTabs links={links} />

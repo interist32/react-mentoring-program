@@ -1,0 +1,31 @@
+@import '../../palette';
+
+.home-movie-details {
+    display: flex;
+
+    &__image {
+        img {
+            width: 320px;
+            height: 450px;
+            object-fit: cover;
+        }
+    }
+
+    &__details {
+        margin-left: 2rem;
+    }
+
+    &__genre {
+        margin-top: .5rem;
+    }
+
+    &__release {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+        color: $color-red;
+    }
+
+    &__description {
+        margin-top: 1.5rem;
+    }
+}

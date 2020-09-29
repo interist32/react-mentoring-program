@@ -5,8 +5,8 @@ import './MovieCard.scss';
 import PropTypes from 'prop-types';
 
 
-const Card = ({ image, title, genre, releaseDate }) => (
-    <div className="c-movie-card">
+const Card = ({ id, image, title, genre, releaseDate, onMovieClick }) => (
+    <div className="c-movie-card" onClick={() => onMovieClick(id)}>
         <img src={image} className="c-movie-card__image" alt={title} />
         <div className="c-movie-card-details">
             <div className="c-movie-card-details__title">{title}</div>
@@ -17,10 +17,12 @@ const Card = ({ image, title, genre, releaseDate }) => (
 );
 
 Card.propTypes = {
+    id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
+    onMovieClick: PropTypes.func,
 };
 
 export default Card;

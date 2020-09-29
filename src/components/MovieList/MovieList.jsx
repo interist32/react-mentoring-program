@@ -6,11 +6,11 @@ import './MovieList.scss';
 import PropTypes from 'prop-types';
 
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies, onMovieClick }) => {
     const movieItems = movies.map((props) => (
         <li key={props.title}
             className="c-movie-list__item">
-            <Card {...props} />
+            <Card {...props} onMovieClick={onMovieClick} />
         </li>
     ));
 
