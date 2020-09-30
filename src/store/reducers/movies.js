@@ -5,6 +5,7 @@ const initialState = {
   movies: [],
   isLoading: false,
   error: null,
+  filterByGenre: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,6 +28,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error,
+      };
+    case actions.SET_FILTER_BY_GENRE:
+      const {genre} = action;
+      return {
+        ...state,
+        filterByGenre: genre,
       };
     default:
       return state;

@@ -20,7 +20,12 @@ import useModalState from '../../hooks/useModalState';
 import './Home.scss';
 
 
-const Home = ({ movies, genres, isLoading, error, dispatchGetMovies, }) => {
+const Home = ({
+    movies,
+    isLoading,
+    error,
+    dispatchGetMovies,
+}) => {
     const [addMovieModalOpen, showAddMovideModal, closeAddMovideModal] = useModalState();
     const [movieIdToEdit, setMovieIdToEdit] = useState(null);
     const [editMovieModalOpen, showEditMovideModal, closeEditMovideModal] = useModalState();
@@ -92,7 +97,7 @@ const Home = ({ movies, genres, isLoading, error, dispatchGetMovies, }) => {
 
     const main = (
         <>
-            <FilterOptions genres={genres} />
+            <FilterOptions />
 
             <div className="home-result__title">
                 <strong>{movies.length}</strong> movies found
@@ -123,8 +128,7 @@ const Home = ({ movies, genres, isLoading, error, dispatchGetMovies, }) => {
 
 const mapStateToProps = (state) => {
     return {
-        movies: moviesSelectors.movies(state),
-        genres: moviesSelectors.genres(state),
+        movies: moviesSelectors.filteredMovies(state),
         isLoading: moviesSelectors.isLoading(state),
         error: moviesSelectors.error(state),
     }

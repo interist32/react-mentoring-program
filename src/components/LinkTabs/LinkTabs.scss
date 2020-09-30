@@ -18,8 +18,10 @@
         color: $color-white;
         padding-bottom: 1em;
         margin-right: 1em;
+        cursor: pointer;
 
-        &:hover {
+        &:hover,
+        &--selected {
             border-bottom: .2em solid $color-red;
         }
     }
