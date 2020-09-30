@@ -8,7 +8,7 @@ import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 
 
-const DeleteMovieModal = ({ onCloseClick }) => {
+const DeleteMovieModal = ({ movieId, onCloseClick }) => {
     return (
         <Modal onCloseClick={onCloseClick}>
             <div className="home-delete-movie">

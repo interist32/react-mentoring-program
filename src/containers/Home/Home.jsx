@@ -22,7 +22,9 @@ import './Home.scss';
 
 const Home = ({ movies, genres, isLoading, error, dispatchGetMovies, }) => {
     const [addMovieModalOpen, showAddMovideModal, closeAddMovideModal] = useModalState();
+    const [movieIdToEdit, setMovieIdToEdit] = useState(null);
     const [editMovieModalOpen, showEditMovideModal, closeEditMovideModal] = useModalState();
+    const [movieIdToDelete, setMovieIdToDelete] = useState(null);
     const [deleteMovieModalOpen, showDeleteMovideModal, closeDeleteMovideModal] = useModalState();
     const [selectedMovieId, setSelectedMovieId] = useState(null);
 
@@ -43,21 +45,40 @@ const Home = ({ movies, genres, isLoading, error, dispatchGetMovies, }) => {
 
     const addMovieModal = (
         addMovieModalOpen ?
-            <AddMovieModal onCloseClick={() => closeAddMovideModal()} /> :
+            <AddMovieModal
+                onCloseClick={() => closeAddMovideModal()} /> :
             null
     );
 
     const editMovieModal = (
-        editMovieModalOpen ?
-            <EditMovieModal onCloseClick={() => closeEditMovideModal()} /> :
+        editMovieModalOpen && movieIdToEdit ?
+            <EditMovieModal
+                movieId={movieIdToEdit}
+                onCloseClick={() => closeEditMovideModal()} /> :
             null
     );
 
     const deleteMovieModal = (
-        deleteMovieModalOpen ?
-            <DeleteMovieModal onCloseClick={() => closeDeleteMovideModal()} /> :
+        deleteMovieModalOpen && movieIdToDelete ?
+            <DeleteMovieModal
+                movieId={movieIdToDelete}
+                onCloseClick={() => closeDeleteMovideModal()} /> :
             null
     );
+
+    const handleMovieClick = (movieId) => {
+        console.log('click', movieId);
+    };
+
+    const handleMovieEditClick = (movieId) => {
+        setMovieIdToEdit(movieId);
+        showEditMovideModal();
+    };
+
+    const handleMovieDeleteClick = (movieId) => {
+        setMovieIdToDelete(movieId);
+        showDeleteMovideModal();
+    };
 
     const hero = (
         <>
@@ -77,7 +98,11 @@ const Home = ({ movies, genres, isLoading, error, dispatchGetMovies, }) => {
                 <strong>{movies.length}</strong> movies found
             </div>
 
-            <MovieList movies={movies} onMovieClick={setSelectedMovieId} />
+            <MovieList movies={movies}
+                onMovieClick={handleMovieClick}
+                onMovieEditClick={handleMovieEditClick}
+                onMovieDeleteClick={handleMovieDeleteClick}
+            />
 
             {addMovieModal}
             {editMovieModal}
