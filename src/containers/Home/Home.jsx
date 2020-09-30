@@ -13,7 +13,7 @@ import DeleteMovieModal from './DeleteMovieModal';
 import MovieDetails from './MovieDetails';
 
 import useModalState from '../../hooks/useModalState';
-import { getMoviesData } from '../../data/api';
+import { getMovies } from '../../data/api';
 
 import './Home.scss';
 
@@ -33,9 +33,9 @@ const Home = () => {
     const selectedMovie = getSelectedMovie();
 
     useEffect(() => {
-        getMoviesData().then(({ movies, genres }) => {
+        getMovies().then((movies) => {
             setMovies(movies);
-            setGenres(genres);
+            setGenres(getGenres(movies));
         });
     }, []);
 
@@ -71,8 +71,6 @@ const Home = () => {
         </>
     );
 
-
-
     const main = (
         <>
             <FilterOptions genres={genres} />
@@ -98,6 +96,16 @@ const Home = () => {
         </HeroLayout>
     );
 
+}
+
+function getGenres(movies) {
+    const set = new Set();
+    for (const movie of movies) {
+        for (const genre of movie.genres) {
+            set.add(genre);
+        }
+    }
+    return [...set];
 }
 
 export default Home;

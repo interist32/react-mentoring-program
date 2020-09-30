@@ -4,13 +4,14 @@ import Card from '../MovieCard/MovieCard';
 import './MovieList.scss';
 
 import PropTypes from 'prop-types';
+import { Movie } from '../../propTypes';
 
 
 const MovieList = ({ movies, onMovieClick }) => {
-    const movieItems = movies.map((props) => (
-        <li key={props.title}
+    const movieItems = movies.map((movie) => (
+        <li key={movie.title}
             className="c-movie-list__item">
-            <Card {...props} onMovieClick={onMovieClick} />
+            <Card movie={movie} onMovieClick={onMovieClick} />
         </li>
     ));
 
@@ -25,16 +26,11 @@ const MovieList = ({ movies, onMovieClick }) => {
 
     return (
         movies.length ? movieList : noMovies
-    )
+    );
 };
 
 MovieList.propTypes = {
-    movies: PropTypes.arrayOf(PropTypes.shape({
-        image: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        releaseDate: PropTypes.number.isRequired,
-    }))
+    movies: PropTypes.arrayOf(Movie),
 };
 
 export default MovieList;
