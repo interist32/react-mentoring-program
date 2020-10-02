@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { connect } from 'react-redux';
 
 import HeroLayout from '../../layouts/HeroLayout';
 
@@ -11,32 +12,30 @@ import AddMovieModal from './AddMovieModal';
 import EditMovieModal from './EditMovieModal';
 import DeleteMovieModal from './DeleteMovieModal';
 import MovieDetails from './MovieDetails';
+import * as moviesActions from '../../store/actions/movies';
+import * as moviesSelectors from '../../store/selectors/movies';
 
 import useModalState from '../../hooks/useModalState';
-import { getMovies } from '../../data/api';
 
 import './Home.scss';
 
 
-const Home = () => {
+const Home = ({
+    movies,
+    isLoading,
+    error,
+    dispatchGetMovies,
+    selectedMovie,
+    dispatchSetSelectedMovie,
+}) => {
     const [addMovieModalOpen, showAddMovideModal, closeAddMovideModal] = useModalState();
+    const [movieIdToEdit, setMovieIdToEdit] = useState(null);
     const [editMovieModalOpen, showEditMovideModal, closeEditMovideModal] = useModalState();
+    const [movieIdToDelete, setMovieIdToDelete] = useState(null);
     const [deleteMovieModalOpen, showDeleteMovideModal, closeDeleteMovideModal] = useModalState();
-    const [movies, setMovies] = useState([]);
-    const [genres, setGenres] = useState([]);
-    const [selectedMovieId, setSelectedMovieId] = useState(null);
-
-    const getSelectedMovie = useCallback(() => {
-        return movies.find(movie => movie.id === selectedMovieId);
-    }, [movies, selectedMovieId]);
-
-    const selectedMovie = getSelectedMovie();
 
     useEffect(() => {
-        getMovies().then((movies) => {
-            setMovies(movies);
-            setGenres(getGenres(movies));
-        });
+        dispatchGetMovies();
     }, []);
 
     const headerRight = (
@@ -45,21 +44,41 @@ const Home = () => {
 
     const addMovieModal = (
         addMovieModalOpen ?
-            <AddMovieModal onCloseClick={() => closeAddMovideModal()} /> :
+            <AddMovieModal
+                onCloseClick={() => closeAddMovideModal()} /> :
             null
     );
 
     const editMovieModal = (
-        editMovieModalOpen ?
-            <EditMovieModal onCloseClick={() => closeEditMovideModal()} /> :
+        editMovieModalOpen && movieIdToEdit ?
+            <EditMovieModal
+                movieId={movieIdToEdit}
+                onCloseClick={() => closeEditMovideModal()} /> :
             null
     );
 
     const deleteMovieModal = (
-        deleteMovieModalOpen ?
-            <DeleteMovieModal onCloseClick={() => closeDeleteMovideModal()} /> :
+        deleteMovieModalOpen && movieIdToDelete ?
+            <DeleteMovieModal
+                movieId={movieIdToDelete}
+                onCloseClick={() => closeDeleteMovideModal()} /> :
             null
     );
+
+    const handleMovieClick = (movieId) => {
+        dispatchSetSelectedMovie(movieId);
+        window.scrollTo(0, 0);
+    };
+
+    const handleMovieEditClick = (movieId) => {
+        setMovieIdToEdit(movieId);
+        showEditMovideModal();
+    };
+
+    const handleMovieDeleteClick = (movieId) => {
+        setMovieIdToDelete(movieId);
+        showDeleteMovideModal();
+    };
 
     const hero = (
         <>
@@ -73,13 +92,17 @@ const Home = () => {
 
     const main = (
         <>
-            <FilterOptions genres={genres} />
+            <FilterOptions />
 
             <div className="home-result__title">
                 <strong>{movies.length}</strong> movies found
             </div>
 
-            <MovieList movies={movies} onMovieClick={setSelectedMovieId} />
+            <MovieList movies={movies}
+                onMovieClick={handleMovieClick}
+                onMovieEditClick={handleMovieEditClick}
+                onMovieDeleteClick={handleMovieDeleteClick}
+            />
 
             {addMovieModal}
             {editMovieModal}
@@ -98,14 +121,21 @@ const Home = () => {
 
 }
 
-function getGenres(movies) {
-    const set = new Set();
-    for (const movie of movies) {
-        for (const genre of movie.genres) {
-            set.add(genre);
-        }
+const mapStateToProps = (state) => {
+    return {
+        movies: moviesSelectors.filteredMovies(state),
+        isLoading: moviesSelectors.isLoading(state),
+        error: moviesSelectors.error(state),
+        selectedMovie: moviesSelectors.selectedMovie(state),
     }
-    return [...set];
 }
 
-export default Home;
+const mapDispatchToProps = {
+    dispatchGetMovies: moviesActions.getMovies,
+    dispatchSetSelectedMovie: moviesActions.setSelectedMovie,
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Home);

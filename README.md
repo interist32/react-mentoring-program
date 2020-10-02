@@ -43,3 +43,9 @@ npm run serve:prod
   - Use `useCallback` hook
   - Use `useEffect` hook
   - Use custom hook
+- Task 6:
+  - Use [API server](https://github.com/VarvaraZadnepriak/MoviesAPI.ReactJS) to fetch data from.
+  - Make real requests to API-server
+  - Use redux
+  - Implement CRUD operations for movies
+  - Implement sorting + filtering

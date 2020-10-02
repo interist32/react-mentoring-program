@@ -3,14 +3,26 @@ import React from 'react';
 import './LinkTabs.scss';
 
 import PropTypes from 'prop-types';
+import { classNames } from '../../utils/utils';
 
 
-const LinkTabs = ({ links }) => {
+const LinkTabs = ({ tabs, selectedText, onSelect }) => {
     return (
         <ul className="c-link-tabs">
+            <LinkTab
+                key={'All'}
+                text={'All'}
+                selected={selectedText === null}
+                onSelect={() => onSelect(null)}
+            />
             {
-                links.map(({ text, link }) => (
-                    <LinkTab key={text} text={text} link={link} />
+                tabs.map((tab) => (
+                    <LinkTab
+                        key={tab}
+                        text={tab}
+                        selected={tab === selectedText}
+                        onSelect={onSelect}
+                    />
                 ))
             }
         </ul>
@@ -18,22 +30,26 @@ const LinkTabs = ({ links }) => {
 }
 
 LinkTabs.propTypes = {
-    links: PropTypes.arrayOf(PropTypes.shape({
-        text: PropTypes.string.isRequired,
-        link: PropTypes.string.isRequired,
-    })),
+    tabs: PropTypes.arrayOf(PropTypes.string),
+    onSelect: PropTypes.func.isRequired,
+    selectedText: PropTypes.string,
 };
 
 
-const LinkTab = ({ text, link }) => (
+const LinkTab = ({ text, selected, onSelect }) => (
     <li className="c-link-tabs__item">
-        <a className="c-link-tabs__link" href={link}>{text}</a>
-    </li>
+        <span {...classNames(
+            "c-link-tabs__link",
+            selected ? "c-link-tabs__link--selected" : '',
+        )}
+            onClick={() => onSelect(text)}>{text}</span>
+    </li >
 );
 
 LinkTab.propTypes = {
     text: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    selected: PropTypes.bool,
 };
 
 export default LinkTabs;

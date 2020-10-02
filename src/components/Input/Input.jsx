@@ -7,18 +7,24 @@ import PropTypes from 'prop-types';
 import { classNames } from '../../utils/utils';
 
 
-const Input = ({ className, value, placeholder }) => (
-    <input {...classNames(
-        'c-input',
-        className,
-    )}
-        type="text"
-        value={value}
-        placeholder={placeholder} />
-);
+const Input = ({
+    className,
+    value,
+    placeholder,
+    onChange,
+}) => (
+        <input {...classNames(
+            'c-input',
+            className,
+        )}
+            type="text"
+            value={value}
+            placeholder={placeholder}
+            onChange={(event) => onChange(event.target.value)} />
+    );
 
 Input.propTypes = {
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     placeholder: PropTypes.string,
 };
 
