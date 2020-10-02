@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import * as moviesActions from '../../store/actions/movies';
 import * as moviesSelectors from '../../store/selectors/movies';
@@ -6,13 +7,32 @@ import * as moviesSelectors from '../../store/selectors/movies';
 import LinkTabs from '../../components/LinkTabs/LinkTabs';
 
 import './FilterOptions.scss';
-import { connect } from 'react-redux';
 
 
-const FilterOptions = ({ genres, filterByGenre, dispatchSetFilterByGenre }) => {
+const FilterOptions = ({
+    genres,
+    filterByGenre,
+    dispatchSetFilterByGenre,
+    sortBy,
+    dispatchSetSorting,
+}) => {
     const handleOnSelectTab = (genre) => {
         dispatchSetFilterByGenre(genre);
     };
+
+    const handleOnChange = (e) => {
+        dispatchSetSorting(e.target.value);
+    };
+
+    const options = [
+        'Genre',
+        'Rating',
+        'Release date',
+    ].map((sortingType) => (
+        <option
+            key={sortingType}
+            value={sortingType.toLowerCase()}>{sortingType}</option>
+    ));
 
     return (
         <div className="home-filter-options">
@@ -25,8 +45,11 @@ const FilterOptions = ({ genres, filterByGenre, dispatchSetFilterByGenre }) => {
             <div className="home-sorting">
                 <label className="home-sorting__title">
                     SORT BY
-                        <select className="home-sorting__select">
-                        <option value="date">RELEASE DATE</option>
+                    <select
+                        onChange={handleOnChange}
+                        value={sortBy || ''}
+                        className="home-sorting__select">
+                        {options}
                     </select>
                 </label>
             </div>
@@ -38,11 +61,13 @@ const mapStateToProps = (state) => {
     return {
         genres: moviesSelectors.genres(state),
         filterByGenre: moviesSelectors.filterByGenre(state),
+        sortBy: moviesSelectors.sortBy(state),
     };
 };
 
 const mapDispatchToProps = {
     dispatchSetFilterByGenre: moviesActions.setFilterByGenre,
+    dispatchSetSorting: moviesActions.setSorting,
 };
 
 export default connect(

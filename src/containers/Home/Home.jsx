@@ -25,20 +25,14 @@ const Home = ({
     isLoading,
     error,
     dispatchGetMovies,
+    selectedMovie,
+    dispatchSetSelectedMovie,
 }) => {
     const [addMovieModalOpen, showAddMovideModal, closeAddMovideModal] = useModalState();
     const [movieIdToEdit, setMovieIdToEdit] = useState(null);
     const [editMovieModalOpen, showEditMovideModal, closeEditMovideModal] = useModalState();
     const [movieIdToDelete, setMovieIdToDelete] = useState(null);
     const [deleteMovieModalOpen, showDeleteMovideModal, closeDeleteMovideModal] = useModalState();
-    const [selectedMovieId, setSelectedMovieId] = useState(null);
-
-    const getSelectedMovie = useCallback(() => {
-        return null;
-        // return movies.find(movie => movie.id === selectedMovieId);
-    }, [movies, selectedMovieId]);
-
-    const selectedMovie = getSelectedMovie();
 
     useEffect(() => {
         dispatchGetMovies();
@@ -72,7 +66,8 @@ const Home = ({
     );
 
     const handleMovieClick = (movieId) => {
-        console.log('click', movieId);
+        dispatchSetSelectedMovie(movieId);
+        window.scrollTo(0, 0);
     };
 
     const handleMovieEditClick = (movieId) => {
@@ -131,11 +126,13 @@ const mapStateToProps = (state) => {
         movies: moviesSelectors.filteredMovies(state),
         isLoading: moviesSelectors.isLoading(state),
         error: moviesSelectors.error(state),
+        selectedMovie: moviesSelectors.selectedMovie(state),
     }
 }
 
 const mapDispatchToProps = {
     dispatchGetMovies: moviesActions.getMovies,
+    dispatchSetSelectedMovie: moviesActions.setSelectedMovie,
 };
 
 export default connect(

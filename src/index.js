@@ -8,7 +8,7 @@ import createSagaMiddleware from 'redux-saga';
 
 import App from './App';
 import rootReducer from './store/reducers';
-import moviesSaga from './store/sagas/movies';
+import {addMovie, editMovie, getMovies, removeMovie} from './store/sagas/movies';
 
 
 const sagaMiddleware = createSagaMiddleware();
@@ -17,7 +17,10 @@ const store = createStore(
     applyMiddleware(sagaMiddleware),
 );
 
-sagaMiddleware.run(moviesSaga);
+sagaMiddleware.run(getMovies);
+sagaMiddleware.run(addMovie);
+sagaMiddleware.run(editMovie);
+sagaMiddleware.run(removeMovie);
 
 render(
     <Provider store={store}>

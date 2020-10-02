@@ -21,12 +21,42 @@ export const genres = createSelector(allMovies, (movies) => {
   return [...set];
 });
 
+const selectedMovieId =
+    createSelector(moviesState, (state) => state.selectedMovieId);
+
+export const selectedMovie =
+    createSelector(allMovies, selectedMovieId, (allMovies, selectedMovieId) => {
+      if (!selectedMovieId) return null;
+
+      return allMovies.find(movie => movie.id === selectedMovieId);
+    });
+
 export const filterByGenre =
     createSelector(moviesState, (state) => state.filterByGenre);
 
-export const filteredMovies =
-    createSelector(allMovies, filterByGenre, (allMovies, filterByGenre) => {
-      if (!filterByGenre) return allMovies;
+export const sortBy = createSelector(moviesState, (state) => state.sortBy);
 
-      return allMovies.filter((movie) => movie.genres.includes(filterByGenre));
-    })
+export const filteredMovies = createSelector(
+    allMovies, filterByGenre, sortBy, (allMovies, filterByGenre, sortBy) => {
+      const sortPredicate = getSortPredicate(sortBy);
+
+      return (!filterByGenre ?
+                  allMovies :
+                  allMovies.filter(
+                      (movie) => movie.genres.includes(filterByGenre)))
+          .sort(sortPredicate)
+          .slice();
+    });
+
+function getSortPredicate(sortBy) {
+  if (sortBy === 'rating') {
+    return (a, b) => a.voteAverage - b.voteAverage;
+  }
+  if (sortBy === 'release date') {
+    return (a, b) => {
+      return new Date(a.releaseDate).getTime() -
+          new Date(b.releaseDate).getTime()
+    };
+  }
+  return (a, b) => a.genres[0].localeCompare(b.genres[0]);
+}
