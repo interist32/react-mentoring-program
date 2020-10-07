@@ -21,14 +21,13 @@ export const genres = createSelector(allMovies, (movies) => {
   return [...set];
 });
 
-const selectedMovieId =
-    createSelector(moviesState, (state) => state.selectedMovieId);
+const selectedMovieId = (state, movieId) => movieId;
 
 export const selectedMovie =
     createSelector(allMovies, selectedMovieId, (allMovies, selectedMovieId) => {
       if (!selectedMovieId) return null;
 
-      return allMovies.find(movie => movie.id === selectedMovieId);
+      return allMovies.find(movie => movie.id == selectedMovieId);
     });
 
 export const filterByGenre =

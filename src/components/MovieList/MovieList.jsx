@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../MovieCard/MovieCard';
+import { Link } from 'react-router-dom';
 
 import './MovieList.scss';
 
@@ -9,18 +10,19 @@ import { Movie } from '../../propTypes';
 
 const MovieList = ({
     movies,
-    onMovieClick,
     onMovieEditClick,
     onMovieDeleteClick,
 }) => {
+
     const movieItems = movies.map((movie) => (
         <li key={movie.title}
             className="c-movie-list__item">
-            <Card movie={movie}
-                onMovieClick={onMovieClick}
-                onMovieEditClick={onMovieEditClick}
-                onMovieDeleteClick={onMovieDeleteClick}
-            />
+            <Link to={`/film/${movie.id}`} className="c-movie-list__link">
+                <Card movie={movie}
+                    onMovieEditClick={onMovieEditClick}
+                    onMovieDeleteClick={onMovieDeleteClick}
+                />
+            </Link>
         </li>
     ));
 
@@ -40,7 +42,6 @@ const MovieList = ({
 
 MovieList.propTypes = {
     movies: PropTypes.arrayOf(Movie),
-    onMovieClick: PropTypes.func.isRequired,
     onMovieEditClick: PropTypes.func.isRequired,
     onMovieDeleteClick: PropTypes.func.isRequired,
 };

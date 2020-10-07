@@ -9,11 +9,15 @@ const headers = {
 };
 
 
-export function getMovies() {
-  return fetch(MOVIES_URL, {
-           method: 'GET',
-           headers,
-         })
+export function getMovies(searchQuery) {
+  return fetch(
+             searchQuery ?
+                 `${MOVIES_URL}?search=${searchQuery}&searchBy=title` :
+                 MOVIES_URL,
+             {
+               method: 'GET',
+               headers,
+             })
       .then(response => response.json())
       .then(data => camelcaseKeys(data, {deep: true}))
       .then(data => data.data);

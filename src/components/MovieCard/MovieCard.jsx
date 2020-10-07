@@ -8,7 +8,6 @@ import { Movie } from '../../propTypes';
 
 const Card = ({
     movie,
-    onMovieClick,
     onMovieEditClick,
     onMovieDeleteClick,
 }) => {
@@ -57,7 +56,7 @@ const Card = ({
     );
 
     return (
-        <div className="c-movie-card" onClick={() => onMovieClick(id)}>
+        <div className="c-movie-card">
             {editOptions}
             <img src={posterPath} className="c-movie-card__image" alt={title} />
             <div className="c-movie-card-details">
@@ -71,7 +70,6 @@ const Card = ({
 
 Card.propTypes = {
     movie: Movie.isRequired,
-    onMovieClick: PropTypes.func.isRequired,
     onMovieEditClick: PropTypes.func.isRequired,
     onMovieDeleteClick: PropTypes.func.isRequired,
 };
