@@ -23,6 +23,7 @@
   "homepage": "https://github.com/interist32/react-mentoring-program#readme",
   "dependencies": {
     "camelcase-keys": "^6.2.2",
+    "formik": "^2.1.7",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -30,7 +31,8 @@
     "react-router": "^5.2.0",
     "redux": "^4.0.5",
     "redux-saga": "^1.1.3",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "@babel/core": "^7.11.0",

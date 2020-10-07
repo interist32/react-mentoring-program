@@ -1,0 +1,21 @@
+@import '../../palette';
+
+
+.home-movie-form {
+    &__label {
+        display: block; 
+        color: $color-red;
+        text-transform: uppercase;
+        margin-bottom: 2em;
+        font-weight: 600;
+    }
+
+    &__error {
+        font-size: .8rem;
+    }
+
+    &__actions {
+        margin-top: 3em;
+        text-align: right;
+    }
+}

@@ -49,3 +49,7 @@ npm run serve:prod
   - Use redux
   - Implement CRUD operations for movies
   - Implement sorting + filtering
+- Task 7:
+  - Use `formik` to implement Add/Edit movie forms
+  - Implement validation
+  - Use hooks from `formik`
