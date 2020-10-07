@@ -53,3 +53,7 @@ npm run serve:prod
   - Use `formik` to implement Add/Edit movie forms
   - Implement validation
   - Use hooks from `formik`
+- Task 8:
+  - Add Routing
+  - Add 404 handling
+  - Use `react-router-dom` library
