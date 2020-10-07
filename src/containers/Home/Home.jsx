@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import HeroLayout from '../../layouts/HeroLayout';
 
@@ -14,6 +15,7 @@ import DeleteMovieModal from './DeleteMovieModal';
 import MovieDetails from './MovieDetails';
 import * as moviesActions from '../../store/actions/movies';
 import * as moviesSelectors from '../../store/selectors/movies';
+import { useParams } from 'react-router-dom';
 
 import useModalState from '../../hooks/useModalState';
 
@@ -25,18 +27,12 @@ const Home = ({
     isLoading,
     error,
     dispatchGetMovies,
-    selectedMovie,
-    dispatchSetSelectedMovie,
 }) => {
     const [addMovieModalOpen, showAddMovideModal, closeAddMovideModal] = useModalState();
     const [movieIdToEdit, setMovieIdToEdit] = useState(null);
     const [editMovieModalOpen, showEditMovideModal, closeEditMovideModal] = useModalState();
     const [movieIdToDelete, setMovieIdToDelete] = useState(null);
     const [deleteMovieModalOpen, showDeleteMovideModal, closeDeleteMovideModal] = useModalState();
-
-    useEffect(() => {
-        dispatchGetMovies();
-    }, []);
 
     const headerRight = (
         <Button onClick={() => showAddMovideModal()}>+ ADD MOVIE</Button>
@@ -65,11 +61,6 @@ const Home = ({
             null
     );
 
-    const handleMovieClick = (movieId) => {
-        dispatchSetSelectedMovie(movieId);
-        window.scrollTo(0, 0);
-    };
-
     const handleMovieEditClick = (movieId) => {
         setMovieIdToEdit(movieId);
         showEditMovideModal();
@@ -80,7 +71,7 @@ const Home = ({
         showDeleteMovideModal();
     };
 
-    const hero = (
+    const searchForm = (
         <>
             <h1 className="tp-header home__title">FIND YOUR MOVIE</h1>
 
@@ -88,6 +79,20 @@ const Home = ({
                 <SearchForm />
             </section>
         </>
+    );
+
+    const hero = (
+        <Switch>
+            <Route path="/search/:searchQuery">
+                {searchForm}
+            </Route>
+            <Route path="/film/:movieId">
+                <MovieDetails />
+            </Route>
+            <Route path="/">
+                {searchForm}
+            </Route>
+        </Switch>
     );
 
     const main = (
@@ -99,7 +104,6 @@ const Home = ({
             </div>
 
             <MovieList movies={movies}
-                onMovieClick={handleMovieClick}
                 onMovieEditClick={handleMovieEditClick}
                 onMovieDeleteClick={handleMovieDeleteClick}
             />
@@ -113,7 +117,7 @@ const Home = ({
     return (
         <HeroLayout
             headerRight={headerRight}
-            hero={selectedMovie ? <MovieDetails movie={selectedMovie} /> : hero}
+            hero={hero}
             main={main}
         >
         </HeroLayout>
@@ -126,16 +130,9 @@ const mapStateToProps = (state) => {
         movies: moviesSelectors.filteredMovies(state),
         isLoading: moviesSelectors.isLoading(state),
         error: moviesSelectors.error(state),
-        selectedMovie: moviesSelectors.selectedMovie(state),
     }
 }
 
-const mapDispatchToProps = {
-    dispatchGetMovies: moviesActions.getMovies,
-    dispatchSetSelectedMovie: moviesActions.setSelectedMovie,
-};
-
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
 )(Home);
