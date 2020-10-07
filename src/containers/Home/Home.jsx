@@ -20,6 +20,7 @@ import { useParams } from 'react-router-dom';
 import useModalState from '../../hooks/useModalState';
 
 import './Home.scss';
+import NotFound from '../NotFound/NotFound';
 
 
 const Home = ({
@@ -89,8 +90,11 @@ const Home = ({
             <Route path="/film/:movieId">
                 <MovieDetails />
             </Route>
-            <Route path="/">
+            <Route path="/" exact>
                 {searchForm}
+            </Route>
+            <Route path="*">
+                {NotFound}
             </Route>
         </Switch>
     );

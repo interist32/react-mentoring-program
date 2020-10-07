@@ -1,0 +1,31 @@
+@import '../../palette';
+
+
+.not-found {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: red;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    background: $color-grey-dark;
+    align-items: center;
+
+    &__header {
+        font-size: 4rem;
+        margin-top: 2em;
+    }
+
+    &__link {
+        font-size: 1.5rem;
+        margin-top: 2em;
+        border-radius: .125em;
+        padding: .75em 3em;
+        color: $color-red;
+    }
+}
