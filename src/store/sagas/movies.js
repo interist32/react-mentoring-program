@@ -4,9 +4,9 @@ import {addMovie as addMovieApi, deleteMovie as deleteMovieApi, getMovies as get
 import * as moviesActions from '../actions/movies';
 
 
-function* fetchMovies() {
+function* fetchMovies({title}) {
   try {
-    const movies = yield getMoviesApi();
+    const movies = yield getMoviesApi(title);
     yield put(moviesActions.getMoviesSuccess(movies));
   } catch (error) {
     yield put(moviesActions.getMoviesError(error.message));

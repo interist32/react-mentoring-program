@@ -11,6 +11,7 @@ const SearchForm = () => {
     return (
         <form className="home-search-form">
             <Input
+                name="search"
                 className="home-search-form__input"
                 placeholder="What do you want to watch?" />
             <Button type="submit"

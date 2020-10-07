@@ -15,8 +15,9 @@ export const SET_SORTING = 'SET SORTING';
 export const SET_SELECTED_MOVIE = 'SET SELECTED MOVIE';
 
 
-export const getMovies = () => ({
+export const getMovies = (title) => ({
   type: GET_MOVIES,
+  title,
 });
 
 export const getMoviesSuccess = (movies) => ({
