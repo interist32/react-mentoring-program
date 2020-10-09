@@ -63,7 +63,7 @@ const MovieForm = ({ mode, movie, onSubmit }) => {
         }}
     >
         {(formik) => (
-            <Form onSubmit={formik.handleSubmit}>
+            <Form role="Movie" onSubmit={formik.handleSubmit}>
                 {movie && movie.id ?
                     <FormInput name="id" type="text" label="ID" readOnly /> :
                     null

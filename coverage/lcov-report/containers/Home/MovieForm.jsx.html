@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for store/actions/movies.js</title>
+    <title>Code coverage report for containers/Home/MovieForm.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">store/actions</a> movies.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">containers/Home</a> MovieForm.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>85/85</span>
+                <span class='fraction'>91/91</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">67.21% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>41/61</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">70.83% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>9/15</span>
+                <span class='fraction'>17/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>85/85</span>
+                <span class='fraction'>91/91</span>
             </div>
         
             
@@ -141,7 +141,13 @@
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -165,6 +171,10 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">473x</span>
+<span class="cline-any cline-yes">473x</span>
+<span class="cline-any cline-yes">473x</span>
+<span class="cline-any cline-yes">473x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -187,6 +197,8 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -225,91 +237,97 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">export const GET_MOVIES = 'GET MOVIES';
-export const GET_MOVIES_SUCCESS = 'GET MOVIES SUCCESS';
-export const GET_MOVIES_ERROR = 'GET MOVIES ERROR';
-export const ADD_MOVIE = 'ADD MOVIE';
-export const ADD_MOVIE_SUCCESS = 'ADD MOVIE SUCCESS';
-export const ADD_MOVIE_ERROR = 'ADD MOVIE ERROR';
-export const UPDATE_MOVIE = 'UPDATE MOVIE';
-export const UPDATE_MOVIE_SUCCESS = 'UPDATE MOVIE SUCCESS';
-export const UPDATE_MOVIE_ERROR = 'UPDATE MOVIE ERROR';
-export const DELETE_MOVIE = 'DELETE MOVIE';
-export const DELETE_MOVIE_SUCCESS = 'DELETE MOVIE SUCCESS';
-export const DELETE_MOVIE_ERROR = 'DELETE MOVIE ERROR';
-export const SET_FILTER_BY_GENRE = 'SET FILTER BY GENRE';
-export const SET_SORTING = 'SET SORTING';
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from 'react';
+import { useFormik, Form, Formik, useField } from 'formik';
+import * as Yup from 'yup';
+&nbsp;
+import PropTypes from 'prop-types';
+import { Movie, MovieBase } from '../../propTypes';
+&nbsp;
+import Input from '../../components/Input/Input';
+import Button from '../../components/Button/Button';
+&nbsp;
+import './MovieForm.scss';
 &nbsp;
 &nbsp;
-export const getMovies = (title) =&gt; ({
-  type: GET_MOVIES,
-  title,
-});
+const FormInput = ({ label, ...props }) =&gt; {
+    const [field, meta] = useField(props);
 &nbsp;
-export const getMoviesSuccess = (movies) =&gt; ({
-  type: GET_MOVIES_SUCCESS,
-  movies,
-});
+    return (
+        &lt;label className="home-movie-form__label"&gt;
+            {label}
+            &lt;Input
+                {...field}
+                {...props}
+            /&gt;
+            {meta.touched &amp;&amp; meta.error ? (
+                &lt;div className="home-movie-form__error"&gt;
+                    {meta.error}
+                &lt;/div&gt;
+            ) : null}
+        &lt;/label&gt;
+    );
+};
 &nbsp;
-export const getMoviesError = (error) =&gt; ({
-  type: GET_MOVIES_ERROR,
-  error,
-});
 &nbsp;
-export const setFilterByGenre = (genre) =&gt; ({
-  type: SET_FILTER_BY_GENRE,
-  genre,
-});
+const MovieForm = ({ mode, movie, onSubmit }) =&gt; {
+    return (&lt;Formik
+        initialValues={{
+            title: '',
+            overview: '',
+            releaseDate: '',
+            posterPath: '',
+            runtime: '',
+            ...movie,
+            genres: movie<span class="branch-0 cbranch-no" title="branch not covered" > ? movie.</span>genres.join(', ') : '',
+        }}
+        validationSchema={Yup.object({
+            title: Yup.string().required('Title is required'),
+            overview: Yup.string().required('Overview is required'),
+            releaseDate: Yup.date(),
+            posterPath: Yup.string().url().required('Image must be a valid URL'),
+            genres: Yup.array().transform(function (value, originalValue) {
+                if (this.isType(value)) <span class="branch-0 cbranch-no" title="branch not covered" >return v</span>alue;
+                return originalValue.split(',').map(s =&gt; s.trim()).filter(Boolean);
+            }).required('Comma separated genres are required'),
+            runtime: Yup.number().min(0).required('Duration is required'),
+        })}
+        onSubmit={(values, { setSubmitting }) =&gt; {
+            const movie = {
+                ...values,
+                genres: values.genres.split(',').map(s =&gt; s.trim()).filter(Boolean),
+                runtime: Number(values.runtime),
+            };
+            onSubmit(movie);
+        }}
+    &gt;
+        {(formik) =&gt; (
+            &lt;Form role="Movie" onSubmit={formik.handleSubmit}&gt;
+                {<span class="branch-0 cbranch-no" title="branch not covered" >movie<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; movie.id ?</span></span>
+                    &lt;FormInput name="id" type="text" label="ID" readOnly /&gt; :
+                    null
+                }
+                &lt;FormInput name="title" type="text" label="Title" /&gt;
+                &lt;FormInput name="overview" type="text" label="Overview" /&gt;
+                &lt;FormInput name="releaseDate" type="date" label="Release date" /&gt;
+                &lt;FormInput name="posterPath" type="text" label="Movie Image URL" /&gt;
+                &lt;FormInput name="genres" type="text" label="Genres" /&gt;
+                &lt;FormInput name="runtime" type="number" label="Duration" /&gt;
+                &lt;div className="home-movie-form__actions"&gt;
+                    &lt;Button type="reset" colorType="secondary"&gt;Reset&lt;/Button&gt;
+                    &lt;Button type="submit" colorType="primary"&gt;Save&lt;/Button&gt;
+                &lt;/div&gt;
+            &lt;/Form&gt;
+        )}
+    &lt;/Formik&gt;)
+};
 &nbsp;
-export const addMovie = <span class="fstat-no" title="function not covered" >(movie) =&gt; ({</span>
-  type: ADD_MOVIE,
-  movie,
-});
+MovieForm.propTypes = {
+    movie: PropTypes.oneOfType([Movie, MovieBase]),
+    onSubmit: PropTypes.func.isRequired,
+};
 &nbsp;
-export const addMovieSuccess = (movie) =&gt; ({
-  type: ADD_MOVIE_SUCCESS,
-  movie,
-});
-&nbsp;
-export const addMovieError = <span class="fstat-no" title="function not covered" >(error) =&gt; ({</span>
-  type: ADD_MOVIE_ERROR,
-  error,
-});
-&nbsp;
-export const updateMovie = <span class="fstat-no" title="function not covered" >(movie) =&gt; ({</span>
-  type: UPDATE_MOVIE,
-  movie,
-});
-&nbsp;
-export const updateMovieSuccess = (movie) =&gt; ({
-  type: UPDATE_MOVIE_SUCCESS,
-  movie,
-});
-&nbsp;
-export const updateMovieError = <span class="fstat-no" title="function not covered" >(error) =&gt; ({</span>
-  type: UPDATE_MOVIE_ERROR,
-  error,
-});
-&nbsp;
-export const deleteMovie = <span class="fstat-no" title="function not covered" >(movieId) =&gt; ({</span>
-  type: DELETE_MOVIE,
-  movieId,
-});
-&nbsp;
-export const deleteMovieSuccess = (movieId) =&gt; ({
-  type: DELETE_MOVIE_SUCCESS,
-  movieId,
-});
-&nbsp;
-export const deleteMovieError = <span class="fstat-no" title="function not covered" >(error) =&gt; ({</span>
-  type: DELETE_MOVIE_ERROR,
-  error,
-});
-&nbsp;
-export const setSorting = (sortBy) =&gt; ({
-  type: SET_SORTING,
-  sortBy,
-});</pre></td></tr></table></pre>
+export default MovieForm;<span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

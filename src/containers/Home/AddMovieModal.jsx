@@ -10,7 +10,7 @@ import * as moviesActions from '../../store/actions/movies';
 import * as moviesSelectors from '../../store/selectors/movies';
 
 
-const AddMovieModal = ({
+export const AddMovieModal = ({
     onCloseClick,
     dispatchAddMovie,
 }) => {

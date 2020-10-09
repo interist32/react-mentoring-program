@@ -10,7 +10,7 @@ const Modal = ({ onCloseClick, ...props }) => (
         <Overlay />
         <div className="c-modal">
             <div className="c-modal-content">
-                <div onClick={onCloseClick} className="c-modal-content__close">✖</div>
+                <div role="close" onClick={onCloseClick} className="c-modal-content__close">✖</div>
                 <div className="c-modal-content__body">
                     {props.children}
                 </div>
