@@ -12,7 +12,6 @@ export const DELETE_MOVIE_SUCCESS = 'DELETE MOVIE SUCCESS';
 export const DELETE_MOVIE_ERROR = 'DELETE MOVIE ERROR';
 export const SET_FILTER_BY_GENRE = 'SET FILTER BY GENRE';
 export const SET_SORTING = 'SET SORTING';
-export const SET_SELECTED_MOVIE = 'SET SELECTED MOVIE';
 
 
 export const getMovies = (title) => ({
@@ -72,7 +71,7 @@ export const deleteMovie = (movieId) => ({
 
 export const deleteMovieSuccess = (movieId) => ({
   type: DELETE_MOVIE_SUCCESS,
-  movie,
+  movieId,
 });
 
 export const deleteMovieError = (error) => ({
@@ -83,9 +82,4 @@ export const deleteMovieError = (error) => ({
 export const setSorting = (sortBy) => ({
   type: SET_SORTING,
   sortBy,
-});
-
-export const setSelectedMovie = (movieId) => ({
-  type: SET_SELECTED_MOVIE,
-  movieId,
 });

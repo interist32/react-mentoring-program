@@ -1,3 +1,5 @@
+import 'regenerator-runtime/runtime.js';
+
 import {call, put, takeEvery, takeLatest} from 'redux-saga/effects';
 
 import {addMovie as addMovieApi, deleteMovie as deleteMovieApi, getMovies as getMoviesApi, updateMovie as updateMovieApi} from '../../data/api';

@@ -57,3 +57,8 @@ npm run serve:prod
   - Add Routing
   - Add 404 handling
   - Use `react-router-dom` library
+- Task 9:
+  - Add snapshot test for presentational component
+  - Cover any reducer with Unit-test
+  - Add coverage reporting
+  - Cover Add movie dialog with unit-test

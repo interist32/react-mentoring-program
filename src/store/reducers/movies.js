@@ -12,11 +12,6 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actions.SET_SELECTED_MOVIE:
-      return {
-        ...state,
-        selectedMovieId: action.movieId,
-      };
     case actions.GET_MOVIES:
       return {
         ...initialState,
