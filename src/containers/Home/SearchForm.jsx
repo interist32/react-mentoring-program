@@ -2,26 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import Button from '../../components/Button/Button';
-import { useParams, useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import * as moviesActions from '../../store/actions/movies';
-
-import './SearchForm.scss';
 
 import Input from '../../components/Input/Input';
 
 
 const SearchForm = ({ dispatchGetMovies, }) => {
-    const history = useHistory();
-    const { searchQuery } = useParams();
-    const [query, setQuery] = useState(searchQuery || '');
+    const router = useRouter();
+    const searchQuery = router.query.searchQuery || '';
+    const [query, setQuery] = useState(searchQuery);
 
     useEffect(() => {
+        setQuery(searchQuery);
         dispatchGetMovies(searchQuery);
     }, [searchQuery]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        query && history.push(`/search/${query}`);
+        query && router.push(`/search/${query}`);
     };
 
     const handleChange = (e) => {

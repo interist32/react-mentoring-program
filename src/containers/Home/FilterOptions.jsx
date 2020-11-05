@@ -6,8 +6,6 @@ import * as moviesSelectors from '../../store/selectors/movies';
 
 import LinkTabs from '../../components/LinkTabs/LinkTabs';
 
-import './FilterOptions.scss';
-
 
 const FilterOptions = ({
     genres,

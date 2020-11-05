@@ -8,8 +8,6 @@ import { Movie, MovieBase } from '../../propTypes';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 
-import './MovieForm.scss';
-
 
 const FormInput = ({ label, ...props }) => {
     const [field, meta] = useField(props);

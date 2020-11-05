@@ -4,8 +4,6 @@ import MaxWidthLayout from '../layouts/MaxWidthLayout';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 
-import './HeroLayout.scss';
-
 
 const HeroLayout = ({ headerRight, hero, main }) => (
     <>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { useRouter } from 'next/router'
 
 import HeroLayout from '../../layouts/HeroLayout';
 
@@ -19,7 +19,6 @@ import { useParams } from 'react-router-dom';
 
 import useModalState from '../../hooks/useModalState';
 
-import './Home.scss';
 import NotFound from '../NotFound/NotFound';
 
 
@@ -34,6 +33,7 @@ const Home = ({
     const [editMovieModalOpen, showEditMovideModal, closeEditMovideModal] = useModalState();
     const [movieIdToDelete, setMovieIdToDelete] = useState(null);
     const [deleteMovieModalOpen, showDeleteMovideModal, closeDeleteMovideModal] = useModalState();
+    const router = useRouter();
 
     const headerRight = (
         <Button onClick={() => showAddMovideModal()}>+ ADD MOVIE</Button>
@@ -83,20 +83,7 @@ const Home = ({
     );
 
     const hero = (
-        <Switch>
-            <Route path="/search/:searchQuery">
-                {searchForm}
-            </Route>
-            <Route path="/film/:movieId">
-                <MovieDetails />
-            </Route>
-            <Route path="/" exact>
-                {searchForm}
-            </Route>
-            <Route path="*">
-                {NotFound}
-            </Route>
-        </Switch>
+        router.route.startsWith('/film/') ? <MovieDetails /> : searchForm
     );
 
     const main = (

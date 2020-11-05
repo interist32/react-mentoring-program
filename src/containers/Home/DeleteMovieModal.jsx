@@ -3,8 +3,6 @@ import React from 'react';
 import Modal from '../../components/Modal/Modal';
 import { connect } from 'react-redux';
 
-import './DeleteMovieModal.scss';
-
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import * as moviesActions from '../../store/actions/movies';

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
-import './NotFound.scss';
+import { Link } from 'next/link';
 
 
 const NotFound = () => (
@@ -12,7 +10,7 @@ const NotFound = () => (
         <div className="not-found__text">
             Page Not Found
         </div>
-        <Link to="/" className="not-found__link">
+        <Link href="/" className="not-found__link">
             Go back to home
         </Link>
     </div>

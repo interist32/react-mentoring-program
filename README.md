@@ -62,3 +62,6 @@ npm run serve:prod
   - Cover any reducer with Unit-test
   - Add coverage reporting
   - Cover Add movie dialog with unit-test
+- Task 10:
+  - Enable SSR
+  - Use Next.js to enable code splitting

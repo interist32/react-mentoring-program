@@ -39,3 +39,9 @@ button {
     color: $color-white;
     font-weight: 300;
 }
+
+@import './components/components-styles.scss';
+@import './containers/Home/home-styles.scss';
+
+@import './containers/NotFound/NotFound.scss';
+@import './layouts/layout-styles.scss';

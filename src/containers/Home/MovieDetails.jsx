@@ -1,16 +1,16 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 
 import { Movie } from '../../propTypes';
 import { connect } from 'react-redux';
 import * as moviesSelectors from '../../store/selectors/movies';
-
-import './MovieDetails.scss';
+import { useRouter } from 'next/router';
 
 
 const MovieDetails = ({ selectMovie }) => {
-    const { movieId } = useParams();
+    const router = useRouter();
+    const movieId = router.query.id;
     const { posterPath, title, genres, releaseDate, overview, tagline } = selectMovie(movieId);
+
     return (
         <>
             <div className="home-movie-details">

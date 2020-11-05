@@ -2,8 +2,6 @@ import React from 'react';
 
 import { classNames } from '../../utils/utils';
 
-import './Button.scss';
-
 import PropTypes from 'prop-types';
 
 

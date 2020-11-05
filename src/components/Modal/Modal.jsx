@@ -2,8 +2,6 @@ import React from 'react';
 
 import Overlay from '../Overlay/Overlay';
 
-import './Modal.scss';
-
 
 const Modal = ({ onCloseClick, ...props }) => (
     <>

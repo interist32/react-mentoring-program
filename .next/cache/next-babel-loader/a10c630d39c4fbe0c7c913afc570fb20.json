@@ -1,0 +1,1 @@
+{"ast":null,"code":"import Home from '../containers/Home/Home';\n\nfunction HomePage() {\n  return /*#__PURE__*/React.createElement(Home, null);\n}\n\nexport default HomePage;","map":null,"metadata":{},"sourceType":"module"}

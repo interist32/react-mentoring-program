@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import './MovieCard.scss';
-
 import PropTypes from 'prop-types';
 import { Movie } from '../../propTypes';
 

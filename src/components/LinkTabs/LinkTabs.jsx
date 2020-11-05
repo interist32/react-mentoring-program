@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './LinkTabs.scss';
-
 import PropTypes from 'prop-types';
 import { classNames } from '../../utils/utils';
 

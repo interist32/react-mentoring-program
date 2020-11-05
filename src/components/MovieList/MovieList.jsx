@@ -1,8 +1,6 @@
 import React from 'react';
 import Card from '../MovieCard/MovieCard';
-import { Link } from 'react-router-dom';
-
-import './MovieList.scss';
+import { Link } from 'next/link';
 
 import PropTypes from 'prop-types';
 import { Movie } from '../../propTypes';
@@ -17,7 +15,7 @@ const MovieList = ({
     const movieItems = movies.map((movie) => (
         <li key={movie.title}
             className="c-movie-list__item">
-            <Link to={`/film/${movie.id}`} className="c-movie-list__link">
+            <Link href={`/film/${movie.id}`} className="c-movie-list__link">
                 <Card movie={movie}
                     onMovieEditClick={onMovieEditClick}
                     onMovieDeleteClick={onMovieDeleteClick}

@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 import Modal from '../../components/Modal/Modal';
 
-import './editMovieModal.scss';
-
 import * as moviesActions from '../../store/actions/movies';
 import * as moviesSelectors from '../../store/selectors/movies';
 import MovieForm from './MovieForm';
