@@ -1,1 +1,0 @@
-{"ast":null,"code":"export * from './movie';\nexport * from './movieBase';","map":null,"metadata":{},"sourceType":"module"}

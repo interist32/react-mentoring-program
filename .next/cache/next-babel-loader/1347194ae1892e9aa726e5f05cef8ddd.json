@@ -1,1 +1,0 @@
-{"ast":null,"code":"/** Joins class names. */\nexport function classNames() {\n  for (var _len = arguments.length, arr = new Array(_len), _key = 0; _key < _len; _key++) {\n    arr[_key] = arguments[_key];\n  }\n\n  return {\n    className: arr.join(' ')\n  };\n}","map":null,"metadata":{},"sourceType":"module"}
